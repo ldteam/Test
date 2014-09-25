@@ -1,6 +1,8 @@
 package com.socialnet.gcm;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.example.fragment_test.GCM_implementation;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -52,7 +54,7 @@ public class MainActivity extends  Activity implements OnClickListener {
         
     //    gcm = GoogleCloudMessaging.getInstance(this);
         
-        GCM = new GCM_implementation(getApplicationContext());
+  //      GCM = new GCM_implementation(getApplicationContext());
        
        // setContentView(R.layout.activity_main);
      // mDisplay = (TextView) findViewById(R.id.display);
@@ -67,7 +69,7 @@ public class MainActivity extends  Activity implements OnClickListener {
 
         // Check device for Play Services APK. If check succeeds, proceed with GCM registration.
        
-       GCM.CheckDeviceForPlayServiceAPK();
+     //  GCM.CheckDeviceForPlayServiceAPK();
  
     
      
@@ -93,7 +95,7 @@ public class MainActivity extends  Activity implements OnClickListener {
         
         
         // Check device for Play Services APK.
-      GCM.checkPlayServices();
+  //    GCM.checkPlayServices();
     }
     
     

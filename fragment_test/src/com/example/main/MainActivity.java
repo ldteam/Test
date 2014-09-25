@@ -1,7 +1,11 @@
 package com.example.main;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android_db.LogIn;
+import com.example.fragment_test.GCM_implementation;
 import com.example.fragment_test.R;
 import com.socialnet.dialog_adapter.DialogList;
 import com.socialnet.friendadapter.FriendList;
@@ -19,6 +24,18 @@ import com.socialnet.message_adapter.MessageList;
 
 public class MainActivity extends ActionBarActivity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
+	
+	
+	//для google cloud messaging
+	    GCM_implementation GCM;
+    	public static final String EXTRA_MESSAGE = "message";
+	    public static final String PROPERTY_REG_ID = "registration_id";
+	    static final String TAG = "GCM Demo";
+	    
+	    AtomicInteger msgId = new AtomicInteger();
+	    Context context;	     
+	    private String regid;
+	    
 
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 	private CharSequence mTitle;
@@ -38,8 +55,39 @@ public class MainActivity extends ActionBarActivity implements
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
 		}
+		
+		
+	    	//модуль GCM 
+	  //    GCM = new GCM_implementation(getApplicationContext());
+	    //context = getApplicationContext();
+
+	        // Check device for Play Services APK. If check succeeds, proceed with GCM registration.
+	       
+	      //    GCM.CheckDeviceForPlayServiceAPK(); 
+		
+		   
+	}
+	
+	class DownloadImageTask extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... params) {
+			
+			
+			//модуль GCM 
+		      GCM = new GCM_implementation(getApplicationContext());
+		      context = getApplicationContext();
+
+		        // Check device for Play Services APK. If check succeeds, proceed with GCM registration.
+		       
+		       GCM.CheckDeviceForPlayServiceAPK(); 
+			
+			return null;
+		}
 	}
 
+	
+	 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// заменяем фрагмент
@@ -92,7 +140,24 @@ public class MainActivity extends ActionBarActivity implements
 		}
 	}
 	
+	  //вызывается перед тем как будет доступно для активности пользователя (взаимодействие)
+    @Override
+    protected void onResume() {
+        super.onResume();
+         
+        new DownloadImageTask().execute("");
+
+    }  
+    
+    @Override      
+    protected void onDestroy() {
+        super.onDestroy();
+    }  
+    
+    
+    
 	
+	   
 	public void onSectionAttached(int number) {
 		switch (number) {
 		case 1:
@@ -156,6 +221,14 @@ public class MainActivity extends ActionBarActivity implements
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public String getRegid() {
+		return regid;
+	}
+
+	public void setRegid(String regid) {
+		this.regid = regid;
 	}
 
 }

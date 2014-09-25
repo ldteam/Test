@@ -97,7 +97,7 @@ public class Database {
 		return tweetsValues;
 	} //end check
 	
-	//передаем запрос в базе данных, колонки, которые нужно вставить и список объектов, которые нужно вставить
+	
 	public String insert(String URL, String request_database,  ListEntry entry, String request_columns)
 	{
 		 InputStream inputStream = null;
@@ -166,7 +166,7 @@ public class Database {
 	        }
 	 
 	        // 11. return result
-	        return result;
+	        return result;  
 	        
 	          
 

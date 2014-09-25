@@ -7,7 +7,7 @@ package com.socialnet.url;
 public final class Url_path_to_server  {
 	
 	
-	public static final String Path_to_Server = "http://192.168.0.104:8080/";
+	public static final String Path_to_Server = "http://10.10.8.90:8080/";
 			//"http://192.168.0.101:8080/";
 
 		public static final String UriSendPicture = Path_to_Server+"SeverSocialNet/sent_picture_to_server";

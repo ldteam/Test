@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.android_db.LogIn;
 import com.example.fragment_test.R;
+import com.example.fragment_test.UserId;
 
 public class EnterActivity extends Activity 
 implements OnClickListener,SQLiteTransactionListener {
@@ -94,10 +95,12 @@ implements OnClickListener,SQLiteTransactionListener {
 					
 					Intent intent = new Intent(this, com.example.main.MainActivity.class);
 					intent.putExtra("ID", str);
+					
+					UserId.ID= str;
 					//finishActivity();
 					
 					this.finish();
-					startActivity(intent);
+					startActivity(intent);   
 					return;
 					
 					

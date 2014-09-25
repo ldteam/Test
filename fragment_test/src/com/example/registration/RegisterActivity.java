@@ -31,7 +31,7 @@ import com.socialnet.url.Url_path_to_server;
 //import com.socialnet.map_entry.ListEntry;
 //import com.socialnet.map_entry.MyEntry;
 
-@SuppressLint("NewApi") @TargetApi(Build.VERSION_CODES.KITKAT) public class RegisterActivity extends Activity implements OnClickListener, OnFocusChangeListener {
+ public class RegisterActivity extends Activity implements OnClickListener, OnFocusChangeListener {
 	
 	ImageButton take_photo;
 	Button register;

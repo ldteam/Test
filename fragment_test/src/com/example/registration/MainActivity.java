@@ -1,6 +1,7 @@
 package com.example.registration;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -14,12 +15,20 @@ import android.widget.Button;
 
 import com.example.android_db.LogIn;
 import com.example.fragment_test.R;
+import com.example.fragment_test.UserId;
+import com.socialnet.database.DatabaseRequests;
 
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
 	
 	Button register;
 	Button enter;
+	
+	String _userId;
+	SharedPreferences sPref;
+	final String SAVED_TEXT = "UserId";
+
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +51,26 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     	Log.i("MY_TAG", "m1."+log+"_"+pass);
 		if(!log.equals("")){
 			CheckPass check = new CheckPass();
-	    	String str = check.Check(log, pass);
-	    	Log.i("MY_TAG", "m2."+str);
-			if(!str.equals("")){
-				if(str.equals("-1")){
-					Log.i("MY_TAG","error connect");
-				}else{
-					Intent intent = new Intent(this, com.example.main.MainActivity.class);
-					intent.putExtra("ID", str);
+			_userId= check.Check(log, pass);
+	    	
+	    	Log.i("MY_TAG", "m2."+_userId);
+			if(!_userId.equals("")){
+				Intent intent = new Intent(this, com.example.main.MainActivity.class);
+				intent.putExtra("ID", _userId);
 				
-					this.finish();
-					startActivity(intent);
-				}
+				
+			/*	sPref = getPreferences(MODE_PRIVATE);
+			    Editor ed = sPref.edit();
+			    ed.putString(SAVED_TEXT, UserId);
+			    ed.commit();*/
+			    
+				UserId.ID=_userId;
+				
+			  // Log.i("My", "MainActivity() id  getString="+ UserId.ID);
+			   
+			   
+				this.finish();
+				startActivity(intent);
 			}
 		}
 		
