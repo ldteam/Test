@@ -172,9 +172,18 @@ public class RegisterActivitySecond extends Activity implements OnClickListener 
 	    	
 		    	
 	    	 try {
-				con.connect();
-				if (Integer.parseInt(con.response())>0)
-				{
+	    		 
+	    		 Log.i("My", "RegisterActivitySecond.OnClick() beforeConnect()");
+	    		 
+				String id=con.response();
+				
+				   
+					  
+				if (id!="")
+			if (Integer.parseInt(id)>0)
+
+			{
+					//Integer.parseInt(con.response())>0)
 				
 					
 					//take id clients
@@ -212,19 +221,25 @@ public class RegisterActivitySecond extends Activity implements OnClickListener 
 		       	 Connection con1 = new Connection(Url_path_to_server.UriInsertInDatabase, DatabaseRequests.InsertIntoAnketa,   list2, "user_id-name-surname-mobile_phone-id_region-id_city");
 			 	  con1.connect();
 			   	 
-			 	  if(intent1.getStringExtra("GetAbsolutePath")!=null)
+				  if(intent1.getStringExtra("GetAbsolutePath")!=null)
 			 	  {
-			 	  Connection con2=new Connection(intent1.getStringExtra("GetAbsolutePath"));
-			 	  con2.connect();
-			 		Log.v("My","response picture "+con2.response());
-			 	  }
+			// 	  Connection con2=new Connection(intent1.getStringExtra("GetAbsolutePath"));
+			 //	  con2.connect();
+			 	//	Log.v("My","response picture "+con2.response());
+			 	  } 
 			    	
-			    	Toast toast = Toast.makeText(this, "CРїР°СЃРёР±Рѕ Р·Р° СЂРµРіРёСЃС‚СЂР°С†РёСЋ!", Toast.LENGTH_LONG);
+			    	Toast toast = Toast.makeText(this, "Регистрация прошла успешно!", Toast.LENGTH_LONG);
 					toast.setGravity(Gravity.CENTER, 0, 0);
-				toast.show();
+			    	toast.show();
 				
-				  Intent intent5 = new Intent(this, EnterActivity.class);
-			        startActivity(intent5);
+				   
+			          
+			  /*     Intent intent = new Intent(this, com.example.main.MainActivity.class);
+					intent.putExtra("ID", id);
+					//finishActivity();
+					
+					this.finish();
+					startActivity(intent);*/
 			    	
 				}
 				else
@@ -233,11 +248,15 @@ public class RegisterActivitySecond extends Activity implements OnClickListener 
 					Toast toast = Toast.makeText(this, "Mistake in registrtion", Toast.LENGTH_LONG);
 					toast.setGravity(Gravity.CENTER, 0, 0);
 				toast.show();
-				}
-		} catch (InterruptedException e) {
+				} 
+		} 
+	catch (InterruptedException e) 
+		{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-		 }catch (ExecutionException e) {
+		 }
+	catch (ExecutionException e) 
+		 {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -258,8 +277,8 @@ public class RegisterActivitySecond extends Activity implements OnClickListener 
 		
 		
 		Log.v("My","id_region"+ id_region); 
-		Log.v("My","id_city"+ id_city);
-		*/ 
+		Log.v("My","id_city"+ id_city);*/
+		
 	}
 	
 	

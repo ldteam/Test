@@ -18,7 +18,7 @@ public class fragment1 extends Fragment {
 
 	
 	
-	
+	   
 	
 	
 	public static fragment1 newInstance(int sectionNumber) {
@@ -45,7 +45,8 @@ public class fragment1 extends Fragment {
 				ARG_SECTION_NUMBER)));
 		
 		Log.i("MY_TAG", "loaderCallbacks");
-
+		Log.i("MY_TAG", "loaderCallbacks");
+		Log.i("MY_TAG", "loaderCallbacks");
 		return rootView;
 	}
 	
