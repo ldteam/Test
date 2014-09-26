@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">JustUp</string>
+    <string name="title_section1">Моя страница</string>
+    <string name="title_section2">Мои друзья</string>
+    <string name="title_section3">Сообщения</string>
+    <string name="title_section4">Задачи</string>
+    <string name="title_section5">Настройки</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="exit">Exit</string>
+<string name="update">Update</string>
+    <string name="faled_to_load_data">Faled to load data</string>
+    <string name="regist">Зарегистрироваться</string>
+    <string name="enter">Войти</string>
+    <string name="anketa">Ваши данные</string>
+    <string name="NoID">неверный логин/пароль</string>
+
+</resources>
