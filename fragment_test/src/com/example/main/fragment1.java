@@ -18,7 +18,7 @@ public class fragment1 extends Fragment {
 
 	//khkjhjkhkjhk
 	
-	
+	//jhkjhjkhjkjklj
 	
 	
 	public static fragment1 newInstance(int sectionNumber) {
