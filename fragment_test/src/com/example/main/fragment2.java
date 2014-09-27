@@ -13,7 +13,7 @@ import com.example.fragment_test.R;
 public class fragment2 extends Fragment {
 	
 	private static final String ARG_SECTION_NUMBER = "section_number";//№
-
+   
 	/**
 	 * Возвращает новый экземпляр фрагмента для получения текущего числа
 	 */
@@ -28,7 +28,7 @@ public class fragment2 extends Fragment {
 	public fragment2() {
 		
 	}
-
+   
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

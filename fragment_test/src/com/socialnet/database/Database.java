@@ -171,6 +171,86 @@ public class Database {
 	          
 
 	}
+	
+	
+	
+	public String send_message(String URL, String request_database,  ListEntry entry, String request_columns, String Message, String FriendID)
+	{
+		 InputStream inputStream = null;
+	        String result = "";
+	        try {
+	 
+	            // 1. create HttpClient
+	            DefaultHttpClient httpclient = new DefaultHttpClient();
+	 
+	            // 2. make POST request to the given URL
+	            //	//"http://192.168.0.101:8080/send_picture/json"; 
+	            HttpPost httpPost = new HttpPost(URL);
+	            
+	            
+               String json = "";
+	            
+	        
+	 
+	            // 3. build jsonObject
+	          
+	            JSONObject jsonObject = Json_object(entry);
+	            
+	            
+	            
+	            
+	            // 4. convert JSONObject to JSON to String
+	            json = jsonObject.toString();
+	 
+	            // ** Alternative way to convert Person object to JSON string usin Jackson Lib 
+	            // ObjectMapper mapper = new ObjectMapper();
+	            // json = mapper.writeValueAsString(person); 
+	 
+	            // 5. set json to StringEntity
+	            StringEntity se = new StringEntity(json, "UTF-8");
+	 
+	            // 6. set httpPost Entity
+	            httpPost.setEntity(se);
+	           
+	 
+	            // 7. Set some headers to inform server about the type of the content   
+	            httpPost.setHeader("Accept", "application/json");
+	            httpPost.setHeader("Content-type", "application/json");
+	            
+	            httpPost.setHeader("request_database", request_database);
+	            httpPost.setHeader("request_columns", request_columns);
+	            httpPost.setHeader("message", Message);
+	            httpPost.setHeader("FriendID", FriendID);
+
+	            
+	            // 8. Execute POST request to the given URL
+	            HttpResponse httpResponse = httpclient.execute(httpPost);
+	 
+	            // 9. receive response as inputStream
+	            inputStream = httpResponse.getEntity().getContent();
+	 
+	            // 10. convert inputstream to string
+	            if(inputStream != null)
+	            {
+	                result = convertInputStreamToString(inputStream);
+	          //Log.v("My", result);
+	            }
+	            else
+	                result = "Did not work!";
+	           Log.v("My", result);
+	 
+	        } catch (Exception e) {
+	            Log.d("My", e.getLocalizedMessage());
+	        }
+	 
+	        // 11. return result
+	        return result;  
+	        
+	          
+
+	}
+
+	
 
 	
 	public boolean delete(String URL, String id, String request_database)

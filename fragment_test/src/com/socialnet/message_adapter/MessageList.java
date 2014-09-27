@@ -94,17 +94,23 @@ private static final String  ID= "";
 				Time time = new Time();   
 				 time.setToNow();
 				
-				  list2.Add(new MyEntry<String, String>("reply", txt_message.toString()));
+				 if (txt_message.length()!=0)
+				 {
+				 
+				 Log.i("My", UserId.ID+" "+txt_message.getText()+" "+time.format("%d.%m.%Y %H.%M.%S"));
+				  list2.Add(new MyEntry<String, String>("reply", txt_message.getText().toString()));
 				  list2.Add(new MyEntry<String, String>("user_id_sender", UserId.ID));
 				  list2.Add(new MyEntry<String, String>("time", time.format("%d.%m.%Y %H.%M.%S")));
 				  
 				  list2.Add(new MyEntry<String, String>("d_id", "1"));
 
 				  
-				  
-	 Connection con1 = new Connection(Url_path_to_server.UriInsertInDatabase, DatabaseRequests.Reg_device_Id,   list2, "user_id-reg_id");
 		
-	        try {  
+				  //uri, request, list, columns, message, friendID
+	 Connection con1 = new Connection(Url_path_to_server.UriSend_message, DatabaseRequests.InsertIntoMessages,   list2, 
+			 "reply-user_id_sender-time-d_id",  txt_message.getText().toString(), "120");
+		
+	      try {  
 	               con1.connect();
 	               
 	         } catch (InterruptedException | ExecutionException e) 
@@ -114,9 +120,11 @@ private static final String  ID= "";
 	    } 
 				
 			
-			}
+			}//end if
+			//	 else Toast.makeText(ctx, "No message", Toast.LENGTH_LONG);
+			}//end OnClick
 		});
-
+		   
 		
 		 messageAdapter =  new Adapter_messages(inflater, messages);
 			
@@ -129,7 +137,7 @@ private static final String  ID= "";
 		    
 		    lvMain.setOnItemClickListener(
 		    		new OnItemClickListener() 
-		    {
+		    {  
 
 		        @SuppressLint({ "ShowToast", "Recycle" })
 				@Override

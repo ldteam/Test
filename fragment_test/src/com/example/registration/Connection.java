@@ -24,11 +24,15 @@ public class Connection extends Activity  {
 	
 	static String  log, pass;
 	
+	//��� send message
+	static String FriendId;
+	static String Message;
+	
 	ContentValues[] values=null;
 	static String id;
      String response="";
 	
-	static int method=0; //номер метода, который вызываем, например insert=1, delete=2
+	static int method=0; //what method to make insert=1, delete=2
 	
 	@SuppressWarnings("static-access")
 	public Connection(String UriServer, String RequestDatabase, ListEntry list, String Columns )
@@ -103,7 +107,8 @@ public class Connection extends Activity  {
 				}
     	
               	//метод check, method=7
-    			public Connection(String UriServer, String RequestDatabase, String log, String pass)
+    			@SuppressWarnings("static-access")
+				public Connection(String UriServer, String RequestDatabase, String log, String pass)
     					{
     						this.UriServer=UriServer;
     						this.RequestDatabase=RequestDatabase;
@@ -114,6 +119,22 @@ public class Connection extends Activity  {
     						method=7;
     						
     					}
+    			 //uri, request, list, columns, message, friendID
+    		 	
+			
+    			   @SuppressWarnings("static-access")
+    			    public Connection(String UriServer, String RequestDatabase, ListEntry list, String Columns, String message, String FriendId)
+    				{
+    					this.UriServer=UriServer;
+    					this.RequestDatabase=RequestDatabase;
+    					this.list=list;
+    					this.Columns=Columns;
+                        this.Message=message;
+                        this.FriendId=FriendId;
+    					method=8;
+    					
+    				}
+    	
 
 	
 public ContentValues[] returnvalues()
@@ -129,22 +150,23 @@ public ContentValues[] returnvalues()
 	public void connect() throws InterruptedException, ExecutionException
 	{
 		  switch (method) {
-		    case 1: //метод insert
+		    case 1: // insert
 		    	SendHttpRequestTask_String str = new SendHttpRequestTask_String();
 		    	response=str.execute().get();
 					
 		    	
 		    	break;
 		    	
-		    case 2: //метод update
+		    case 2: // update
 		    	
 		      	 str= new SendHttpRequestTask_String();
 				str.execute();
+				response=str.execute().get();
 				
 		    	
 		    	break;
 		    	
-		    case 3://метод select all
+		    case 3:// select all
 		    	try {
 		    SendHttpRequestTask_ContentValue t = new SendHttpRequestTask_ContentValue();
 			values=t.execute().get();
@@ -165,23 +187,34 @@ public ContentValues[] returnvalues()
 		    	
 		    	break;
 		    	
-		    case 5://метод delete
+		    case 5:// delete
 		       str = new SendHttpRequestTask_String();
 				str.execute();
 		    	break;
 		    	
-		    case 6://метод UploadPicture
+		    case 6:// UploadPicture
 		    	 str = new SendHttpRequestTask_String();
 				str.execute();
 		    	break;
 		    	
-		    case 7://метод  check
+		    case 7:// method  check
 		    	try {
 		         SendHttpRequestTask_ContentValue t = new SendHttpRequestTask_ContentValue();
 			      values=t.execute().get();
 				} 
 				catch (InterruptedException e) {e.printStackTrace();}
 				catch (ExecutionException e) {e.printStackTrace();}
+		    	
+		    	break;
+		    	
+		    	//send message
+		    case 8:
+		    	
+		    	 str= new SendHttpRequestTask_String();
+				 str.execute();
+				/*response=str.execute().get();*/
+					
+			    	
 		    	
 		    	break;
 		    	
@@ -219,12 +252,16 @@ public ContentValues[] returnvalues()
 			    	UploadPicture upload = new UploadPicture(getPath);
 			    	response=upload.UploadPicture_from_Server();
 			    	break;
+			    //send message	
+			    case 8:
+			    	dt.send_message(UriServer, RequestDatabase, list, Columns, Message, FriendId);
+			    	break;
 			    	default:
 			    		
-			    		break;
+			    	  	break;
 			 }
 			return response;
-		}
+		}  
 
 
 		

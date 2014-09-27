@@ -36,7 +36,7 @@ implements OnClickListener,SQLiteTransactionListener {
 		 log=(EditText)findViewById(R.id.surname);
 		 pass=(EditText)findViewById(R.id.editText2);
 		 Error=(TextView)findViewById(R.id.error);
-		 
+		   
 		 enter.setOnClickListener(this);
 		 forget_password.setOnClickListener(this);
 	}
