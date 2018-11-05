@@ -1,6 +1,0 @@
-<<<<<<< HEAD
-
-werty
-=======
-fghjk
->>>>>>> branch 'master' of https://github.com/ldteam/Test.git
